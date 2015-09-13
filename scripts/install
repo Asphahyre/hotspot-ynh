@@ -37,13 +37,6 @@ if ! $upgrade; then
     exit 1
   fi
   
-  sudo systemctl is-active dnsmasq &> /dev/null
-  
-  if [ $? -ne 0 ]; then
-    echo "ERROR: You need to enable dnsmasq instead of bind9 (apt-get remove bind9 && systemctl start dnsmasq)" >&2
-    exit 1
-  fi
-  
   # Check arguments
   if [ -z "${wifi_ssid}" -o -z "${wifi_passphrase}" ]; then
     echo "ERROR: Your Wifi Hotspot needs a name and a password" >&2
